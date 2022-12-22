@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Card from "../UI/Card";
 import classes from "./Login.module.css";
 import Button from "../UI/Button";
@@ -10,11 +10,25 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      console.log('Checking validity!!!')
+      setFormIsValid(
+        enteredEmail.includes("@") && enteredPassword.trim().length > 6
+      );
+    }, 1000);
+
+    return () => {
+      console.log('CleanUp')
+      clearTimeout(identifier)
+    }
+    }, [enteredEmail, enteredPassword])
+
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
 
     setFormIsValid(
-      event.target.value.includes("@") && enteredPassword.trim().length > 6
+      enteredEmail.includes("@") && enteredPassword.trim().length > 6
     );
   };
 
@@ -22,7 +36,7 @@ const Login = (props) => {
     setEnteredPassword(event.target.value);
 
     setFormIsValid(
-      event.target.value.trim().length > 6 && enteredEmail.includes("@")
+      enteredEmail.trim().length > 6 && enteredEmail.includes("@")
     );
   };
 
@@ -71,7 +85,7 @@ const Login = (props) => {
           />
         </div>
         <div className={classes.actions}>
-          <Button type="submit" className={classes.btn} disabled={!formIsValid} >
+          <Button type="submit" className={classes.btn} disabled={!formIsValid}>
             Login
           </Button>
         </div>
