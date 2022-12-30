@@ -8,8 +8,10 @@ In the project directory, you can run:
 
 ### `npm start`
 
+You are going to be able to see the project by clicking the link right below
+
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [link](https://63adbe3c0c32970153651661--iridescent-capybara-26e2da.netlify.app/) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
